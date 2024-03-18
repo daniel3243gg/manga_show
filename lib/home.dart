@@ -11,7 +11,7 @@ class Home extends StatefulWidget {
 
 Future<List<UserData>> fetchUserData() async {
   // Simulando uma chamada assíncrona para buscar dados do usuário
-  await Future.delayed(Duration(seconds: 3)); // Simula um atraso de 2 segundos
+  // Simula um atraso de 2 segundos
   List<UserData> userData = [];
 
   mangas.forEach((link) {

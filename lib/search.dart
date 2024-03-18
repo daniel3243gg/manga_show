@@ -3,8 +3,24 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:manga_show/models/modelteste.dart';
 import 'models/modelGenero.dart';
+import 'serachgeneroAba.dart';
+
+class SerachGet extends GetxController {
+  // Variável observável para armazenar o texto de pesquisa
+  var pesquisa = ''.obs;
+
+  // Função para atualizar o texto de pesquisa
+  void updatePesquisa(String query) {
+    pesquisa.value = query;
+  }
+
+  String getResultados() {
+    return 'ocorreu';
+  }
+}
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -14,6 +30,7 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  final SerachGet searchController = Get.put(SerachGet());
   String pesquisa = '';
   @override
   Widget build(BuildContext context) {
@@ -26,7 +43,8 @@ class _SearchState extends State<Search> {
               hintText: 'Solo Leving...', // Texto de sugestão
               labelText: 'Pesquisa', // Rótulo do campo
               hintStyle: TextStyle(
-                  color: Color.fromARGB(255, 87, 72, 90)), // Cor do texto de sugestão
+                  color: Color.fromARGB(
+                      255, 87, 72, 90)), // Cor do texto de sugestão
               labelStyle: TextStyle(color: Colors.purple),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -35,52 +53,26 @@ class _SearchState extends State<Search> {
             ),
             style: TextStyle(color: Color.fromARGB(255, 201, 87, 230)),
             onChanged: (text) {
-              pesquisa = text;
-              print(pesquisa);
+              searchController.updatePesquisa(text);
             },
           ),
           const SizedBox(height: 20),
-           Obx(
-              () {
-                if ("".obs == null || "".obs!.isEmpty) {
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: 10, // Substitua pelo número de itens do resultado da pesquisa
-                      itemBuilder: (context, index) {
-                        // Substitua isso pelo layout do item da lista
-                        return ListTile(
-                          title: Text('Item ${index + 1}'),
-                        );
-                      },
-                    ),
-                  );
-                } else {
-                  return Expanded(
-                    child: Center(
-                      child: Text('Resultado da pesquisa: ${_searchController.text}'),
-                    ),
-                  );
-                }
-              },
-            ),
-          
+          Obx(
+            () {
+              if (searchController.pesquisa.value.isEmpty) {
+                return AbaGenero();
+              } else {
+                return Expanded(
+                  child: Center(
+                    child: Text(
+                        'Resultado da pesquisa: ${searchController.getResultados()}'),
+                  ),
+                );
+              }
+            },
+          ),
         ],
       ),
     );
-  }
-
-  Future<List<GeneroData>> fetchGeneroData() async {
-    // Simulando uma chamada assíncrona para buscar dados do usuário
-    List<GeneroData> generoDataL = [];
-
-    generoPic.forEach((mapG) {
-      String genero = mapG['genero'] ?? '';
-      String pic = mapG['pic'] ?? '';
-      GeneroData dado = GeneroData(pic, genero);
-      generoDataL.add(dado);
-    });
-    // Dados fictícios do usuário
-    // Retornando os dados do usuário
-    return generoDataL;
   }
 }

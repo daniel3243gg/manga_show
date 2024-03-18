@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'home.dart';
 import 'search.dart';
+import 'perfil.dart';
 
 void main() {
   runApp(MangaShow());
@@ -15,11 +16,10 @@ class MangaShow extends StatefulWidget {
 }
 
 class _MangaShowState extends State<MangaShow> {
-
   int pagina = 0;
   late PageController pageController;
 
-    void initState() {
+  void initState() {
     super.initState();
     pageController = PageController(initialPage: pagina);
   }
@@ -59,10 +59,10 @@ class _MangaShowState extends State<MangaShow> {
             setState(() {
               pagina = opc;
               pageController.animateToPage(
-              pagina,
-              duration: Duration(milliseconds: 300),
-              curve: Curves.ease,
-            );
+                pagina,
+                duration: Duration(milliseconds: 300),
+                curve: Curves.ease,
+              );
             });
           },
           fixedColor: Colors.purple,
@@ -87,6 +87,7 @@ class _MangaShowState extends State<MangaShow> {
               children: [
                 Home(),
                 Search(),
+                Perfil()
               ],
             )),
         backgroundColor: Colors.black,
