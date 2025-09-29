@@ -1,0 +1,44 @@
+name: manga_show
+description: Um aplicativo para descobrir e acompanhar mangás e animes
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Gerenciamento de estado e navegação
+  get: ^4.6.6
+  
+  # Armazenamento local
+  shared_preferences: ^2.2.2
+  
+  # Ícones
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Fontes personalizadas (opcional)
+  fonts:
+    - family: Padrao
+      fonts:
+        - asset: fonts/Padrao-Regular.ttf
+        - asset: fonts/Padrao-Bold.ttf
+          weight: 700
+
+  # Assets (adicione aqui imagens, ícones, etc. conforme necessário)
+  # assets:
+  #   - images/
+  #   - icons/
