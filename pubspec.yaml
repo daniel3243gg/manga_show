@@ -1,0 +1,32 @@
+name: manga_show
+description: Um aplicativo completo para leitura e descoberta de mangás com sistema de usuário.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.6.6
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Fontes personalizadas (se necessário)
+  fonts:
+    - family: padrao
+      fonts:
+        - asset: fonts/padrao.ttf
+          weight: 400
+
+  # Assets (adicione aqui imagens e outros recursos se necessário)
+  # assets:
+  #   - images/
